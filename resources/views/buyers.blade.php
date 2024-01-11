@@ -63,6 +63,7 @@
                     <div class="form-group row">
                       <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
                       <div class="col-sm-10">
+                        <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                         <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="name">
                       </div>
                     </div>

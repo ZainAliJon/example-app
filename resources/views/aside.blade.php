@@ -53,6 +53,8 @@
               </li>
             </ul>
           </li>
+          @endif
+          @if(auth()->user()->role == "Admin" || auth()->user()->role == "customer")
            <li class="nav-item @if(Request::url() == url('/sellers')) menu-open @endif">
             <a href="#" class="nav-link @if(Request::url() == url('/sellers')) active  @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
