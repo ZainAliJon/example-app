@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/classifier/edit/{id}', [ProfileController::class, 'classifier_edit'])->name('classifier_edit');
     Route::get('/tasks', [ProfileController::class, 'tasks'])->name('tasks');
     Route::post('/task/create', [ProfileController::class, 'task_create'])->name('task_create');
+    Route::post('/task/edit/{id}', [ProfileController::class, 'task_edit'])->name('task_edit');
     Route::post('/task/change_status/{id}', [ProfileController::class, 'change_status'])->name('change_status');
     Route::get('/task/inbox/{id}', [ProfileController::class, 'inbox'])->name('inbox');
     Route::get('/task/compose/{id}', [ProfileController::class, 'compose'])->name('compose');

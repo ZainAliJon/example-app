@@ -20,6 +20,16 @@ class Task extends Model
         return $this->belongsTo(User::class, 'classifier_id');
     }
 
+        public function seller()
+    {
+        return $this->belongsTo(Seller::class,'seller_id');
+    }
+               public function buyer()
+    {
+        return $this->belongsTo(Buyer::class,'buyer_id');
+    }
+    
+
      public function rejection()
     {
         return $this->hasMany(RejectionNote::class);

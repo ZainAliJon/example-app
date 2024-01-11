@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-5 text-center">
 
-                      <img src="{{url('/public/dashboard/dist/img/user1-128x128.jpg')}}" alt="user-avatar" class="img-circle img-fluid">
+                      <img src="{{$buyer->image}}" alt="user-avatar" class="img-circle img-fluid">
                     </div>
                   </div>
                 </div>
@@ -51,7 +51,7 @@
 
         <div class="modal fade" id="user-modal" style="display: none;" aria-hidden="true">
           <div class="modal-dialog">
-            <form class="form-horizontal" method="post" action="{{url('/buyer/create')}}">
+            <form class="form-horizontal" method="post" action="{{url('/buyer/create')}}"enctype="multipart/form-data">
               @csrf
               <div class="modal-content">
                 <div class="modal-body pb-0">
@@ -66,6 +66,12 @@
                         <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="name">
                       </div>
                     </div>
+                                                       <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">Profile Image</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" id="inputEmail3" placeholder="Name" name="image">
+                  </div>
+                </div>
                   </div>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -84,7 +90,7 @@
   <div class="row">
     <div class="modal fade" id="user-edit-modal{{$buyer->id}}" style="display: none;" aria-hidden="true">
       <div class="modal-dialog">
-        <form class="form-horizontal" method="post" action="{{url('/buyer/edit/'.$buyer->id)}}">
+        <form class="form-horizontal" method="post" action="{{url('/buyer/edit/'.$buyer->id)}}" enctype="multipart/form-data">
           @csrf
           <div class="modal-content">
             <div class="modal-body pb-0">
@@ -97,6 +103,12 @@
                   <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="name" value="{{$buyer->name}}">
+                  </div>
+                </div>
+                                                   <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">Profile Image</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" id="inputEmail3" placeholder="Name" name="image">
                   </div>
                 </div>
               </div>

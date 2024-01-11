@@ -65,9 +65,11 @@
 							</h5>
 							<div class="card-tools">
 								<a href="{{url('/task/inbox/'.$task->id)}}" class="btn btn-info"><i class="fas fa-envelope"></i></a>
+								@if(auth()->user()->role == "customer")
 								<a @if(auth()->user()->role == "customer") data-target="#task-check-modal{{$task->id}}" @endif data-toggle="modal" class="btn btn-success">
 									<i class="fas fa-edit"></i>
 								</a>
+								@endif
 							</div>
 						</div>
 						<div class="card-body">
@@ -92,7 +94,7 @@
 			<div class=" card card-row card-default">
 				<div class="card-header bg-info">
 					<h3 class="card-title">
-						Reviewed
+						Processing
 					</h3>
 				</div>
 				<div class="card-body">
@@ -179,22 +181,71 @@
 										<input type="number" class="form-control" id="inputEmail3" placeholder="price" name="price">
 									</div>
 								</div>
+
 								<div class="form-group row">
-									<label for="inputEmail3" class="col-sm-2 col-form-label">Seller</label>
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Seller</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" id="inputEmail3" placeholder="Seller" name="seller">
+										<select class="form-control" name="seller_id" required="">
+											<option value="">Select</option>
+											@foreach($sellers as $seller)
+											<option value="{{$seller->id}}">{{$seller->name}}</option>
+											@endforeach
+										</select>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="inputEmail3" class="col-sm-2 col-form-label">Buyer</label>
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Buyer</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" id="inputEmail3" placeholder="Buyer" name="buyer">
+										<select class="form-control" name="buyer_id" required="">
+											<option value="">Select</option>
+											@foreach($buyers as $buyer)
+											<option value="{{$buyer->id}}">{{$buyer->name}}</option>
+											@endforeach
+										</select>
+									</div>
+								</div>
+
+
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Request ID</label>
+									<div class="col-sm-10">
+										<input type="number" class="form-control" id="inputPassword3" placeholder="Request ID" name="request_id" >
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="inputPassword3" class="col-sm-2 col-form-label">Number</label>
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Request Date</label>
 									<div class="col-sm-10">
-										<input type="number" class="form-control" id="inputPassword3" placeholder="Number" name="number" disabled="">
+										<input type="date" class="form-control" id="inputPassword3" placeholder="Request Date" name="request_date" >
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Entry Ref</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="inputPassword3" placeholder="Entry Ref" name="entry_ref" >
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">CatalogID</label>
+									<div class="col-sm-10">
+										<input type="number" class="form-control" id="inputPassword3" placeholder="CatalogID" name="catalog_id" >
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Notes</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="inputPassword3" placeholder="notes" name="notes" >
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">InvoiceLine Item</label>
+									<div class="col-sm-10">
+										<input type="number" class="form-control" id="inputPassword3" placeholder="InvoiceLine Item" name="invoice_line_item" >
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Invoice ID</label>
+									<div class="col-sm-10">
+										<input type="number" class="form-control" id="inputPassword3" placeholder="Invoice ID" name="invoice_id" >
 									</div>
 								</div>
 								<div class="form-group row">
@@ -242,13 +293,13 @@
 	@foreach($pending_tasks as $taskaa)
 	<div class="modal fade" id="task-edit-modal{{$taskaa->id}}" style="display: none;" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
-			<form class="form-horizontal" method="post" action="{{url('/task/create')}}" enctype="multipart/form-data">
+			<form class="form-horizontal" method="post" action="{{url('/task/edit',['id'=>$taskaa->id])}}" enctype="multipart/form-data">
 				@csrf
 				<div class="modal-content">
 					<div class="modal-body pb-0">
 						<div class="card card-info">
 							<div class="card-header">
-								<h3 class="card-title">Add Task</h3>
+								<h3 class="card-title">Edit Task</h3>
 							</div>
 							<div class="card-body">
 								<div class="form-group row">
@@ -263,24 +314,73 @@
 										<input type="number" class="form-control" id="inputEmail3" placeholder="price" name="price" value="{{$taskaa->price}}">
 									</div>
 								</div>
+
 								<div class="form-group row">
-									<label for="inputEmail3" class="col-sm-2 col-form-label">Seller</label>
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Seller</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" id="inputEmail3" placeholder="Seller" name="seller" value="{{$taskaa->seller}}">
+										<select class="form-control" name="seller_id" required="">
+											<option value="">Select</option>
+											@foreach($sellers as $seller)
+											<option value="{{$seller->id}}"  @if($seller->id == $taskaa->seller_id) selected=""  @endif>{{$seller->name}}</option>
+											@endforeach
+										</select>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="inputEmail3" class="col-sm-2 col-form-label">Buyer</label>
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Buyer</label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" id="inputEmail3" placeholder="Buyer" name="buyer" value="{{$taskaa->buyer}}">
+										<select class="form-control" name="buyer_id" required="">
+											<option value="">Select</option>
+											@foreach($buyers as $buyer)
+											<option value="{{$buyer->id}}"  @if($buyer->id == $taskaa->buyer_id) selected=""  @endif>{{$buyer->name}}</option>
+											@endforeach
+										</select>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="inputPassword3" class="col-sm-2 col-form-label">Number</label>
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Request ID</label>
 									<div class="col-sm-10">
-										<input type="number" class="form-control" id="inputPassword3" placeholder="Number" name="number" @if(auth()->user()->role != "customer")  @else disabled="" @endif>
+										<input type="number" value="{{$taskaa->request_id}}" class="form-control" id="inputPassword3" placeholder="Request ID" name="request_id" >
 									</div>
 								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Request Date</label>
+									<div class="col-sm-10">
+										<input type="date" value="{{$taskaa->request_date}}" class="form-control" id="inputPassword3" placeholder="Request Date" name="request_date" >
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Entry Ref</label>
+									<div class="col-sm-10">
+										<input type="text" value="{{$taskaa->entry_ref}}" class="form-control" id="inputPassword3" placeholder="Entry Ref" name="entry_ref" >
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">CatalogID</label>
+									<div class="col-sm-10">
+										<input type="number" value="{{$taskaa->catalog_id}}" class="form-control" id="inputPassword3" placeholder="CatalogID" name="catalog_id" >
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Notes</label>
+									<div class="col-sm-10">
+										<input type="text" value="{{$taskaa->notes}}" class="form-control" id="inputPassword3" placeholder="notes" name="notes" >
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">InvoiceLine Item</label>
+									<div class="col-sm-10">
+										<input type="number" value="{{$taskaa->invoice_line_item}}" class="form-control" id="inputPassword3" placeholder="InvoiceLine Item" name="invoice_line_item" >
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 col-form-label">Invoice ID</label>
+									<div class="col-sm-10">
+										<input type="number" value="{{$taskaa->invoice_id}}" class="form-control" id="inputPassword3" placeholder="Invoice ID" name="invoice_id" >
+									</div>
+								</div>
+
+
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 col-form-label">File</label>
 									<div class="col-sm-10">
@@ -367,7 +467,7 @@
 											<div class="accepted_div">
 												<div class="form-group">
 													<label>Product Code</label>
-													<input type="text" name="number" class="form-control" placeholder="Product Code...">
+													<input type="text" name="number" class="form-control" placeholder="Product Code..." >
 												</div>
 											</div>
 											<div class="rejection_note d-none">

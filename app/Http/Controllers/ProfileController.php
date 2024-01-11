@@ -77,6 +77,17 @@ class ProfileController extends Controller
         $data = $request->except('_token');
         $user = new User();
         $data['password'] = Hash::make($request->password);
+                          if ($request->hasFile('image')) {
+        $profileImage = $request->file('image');
+        $profileImageName = time() . '_' . $profileImage->getClientOriginalName();
+
+        $directory = 'images';
+        $profileImage->storeAs($directory, $profileImageName, 'public');
+        $url =url('/');
+        $completeImagePath = $url.'/'.'storage/app/public/' . $directory . '/' . $profileImageName;
+
+        $data['image'] = $completeImagePath;
+    }
         $data['role'] = 'customer';
         if (User::where('email', $data['email'])->exists()) {
             return redirect()->back()->with('error', 'User with the same email already exists. Please try different Email');
@@ -88,6 +99,17 @@ class ProfileController extends Controller
     {
         $data = $request->except('_token');
         $user = User::find($id);
+                          if ($request->hasFile('image')) {
+        $profileImage = $request->file('image');
+        $profileImageName = time() . '_' . $profileImage->getClientOriginalName();
+
+        $directory = 'images';
+        $profileImage->storeAs($directory, $profileImageName, 'public');
+        $url =url('/');
+        $completeImagePath = $url.'/'.'storage/app/public/' . $directory . '/' . $profileImageName;
+
+        $data['image'] = $completeImagePath;
+    }
         if ($data['email'] != $user->email && User::where('email', $data['email'])->exists()) {
             return redirect()->back()->with('error', 'User with the same email already exists. Please try a different email.');
         }
@@ -111,6 +133,19 @@ class ProfileController extends Controller
         $user = new User();
         $data['password'] = Hash::make($request->password);
         $data['role'] = 'classifier';
+
+            if ($request->hasFile('image')) {
+        $profileImage = $request->file('image');
+        $profileImageName = time() . '_' . $profileImage->getClientOriginalName();
+
+        $directory = 'images';
+        $profileImage->storeAs($directory, $profileImageName, 'public');
+        $url =url('/');
+        $completeImagePath = $url.'/'.'storage/app/public/' . $directory . '/' . $profileImageName;
+
+        $data['image'] = $completeImagePath;
+    }
+
         if (User::where('email', $data['email'])->exists()) {
             return redirect()->back()->with('error', 'User with the same email already exists. Please try different Email');
         }
@@ -122,6 +157,17 @@ class ProfileController extends Controller
     {
         $data = $request->except('_token');
         $user = User::find($id);
+                  if ($request->hasFile('image')) {
+        $profileImage = $request->file('image');
+        $profileImageName = time() . '_' . $profileImage->getClientOriginalName();
+
+        $directory = 'images';
+        $profileImage->storeAs($directory, $profileImageName, 'public');
+        $url =url('/');
+        $completeImagePath = $url.'/'.'storage/app/public/' . $directory . '/' . $profileImageName;
+
+        $data['image'] = $completeImagePath;
+    }
         if ($data['email'] != $user->email && User::where('email', $data['email'])->exists()) {
             return redirect()->back()->with('error', 'User with the same email already exists. Please try a different email.');
         }
@@ -137,7 +183,9 @@ class ProfileController extends Controller
 // tasks
     public function tasks(){
         $classifiers = User::where('role', 'classifier')->get();
-        // if(auth()->user()->role == "Admin"){
+        $sellers = Seller::all();
+        $buyers=Buyer::all();
+         if(auth()->user()->role == "Admin"){
 
         $tasks = Task::all();
         $pending_tasks = Task::where('status', 'pending')->get();
@@ -151,14 +199,32 @@ class ProfileController extends Controller
         }])
         ->get();
         $done_tasks = Task::where('status', 'done')->get();
-        // }else{
-        //     $tasks = Task::where('classifier_id', auth()->user()->id)->get();
-        //     $pending_tasks = Task::where('status', 'pending')->where('classifier_id', auth()->user()->id)->get();
-        //     $in_reviews_tasks = Task::where('status', 'in_rewiew')->where('classifier_id', auth()->user()->id)->get();
-        //     $reviewed_tasks = Task::where('status', 'reviewed')->where('classifier_id', auth()->user()->id)->get();
-        //     $done_tasks = Task::where('status', 'done')->where('classifier_id', auth()->user()->id)->get();
-        // }
-        return view('tasks', compact('classifiers', 'tasks', 'pending_tasks', 'in_reviews_tasks', 'reviewed_tasks', 'done_tasks'));
+        }
+        if(auth()->user()->role == "classifier"){
+            $tasks = Task::where('classifier_id', auth()->user()->id)->get();
+            $pending_tasks = Task::where('status', 'pending')->where('classifier_id', auth()->user()->id)->get();
+                $in_reviews_tasks = Task::where('status', 'in_review')
+        ->with(['rejection' => function ($query) {
+            $query->where('status', 'in_review');
+        }])->where('classifier_id', auth()->user()->id)->get();
+            
+            $reviewed_tasks = Task::where('status', 'reviewed')->where('classifier_id', auth()->user()->id)->get();
+            $done_tasks = Task::where('status', 'done')->where('classifier_id', auth()->user()->id)->get();
+        }
+        if(auth()->user()->role == "customer"){
+         
+                     $tasks = Task::where('customer_id', auth()->user()->id)->get();
+            $pending_tasks = Task::where('status', 'pending')->where('customer_id', auth()->user()->id)->get();
+                $in_reviews_tasks = Task::where('status', 'in_review')
+        ->with(['rejection' => function ($query) {
+            $query->where('status', 'in_review');
+        }])->where('customer_id', auth()->user()->id)->get();
+            
+            $reviewed_tasks = Task::where('status', 'reviewed')->where('customer_id', auth()->user()->id)->get();
+            $done_tasks = Task::where('status', 'done')->where('customer_id', auth()->user()->id)->get();
+
+        }
+        return view('tasks', compact('classifiers', 'tasks', 'pending_tasks', 'in_reviews_tasks', 'reviewed_tasks', 'done_tasks', 'sellers','buyers'));
     }
 
     public function task_create(Request $request){
@@ -176,6 +242,22 @@ class ProfileController extends Controller
         $obj->create($data);
         return redirect()->back()->with('message', 'Task has been Created');
     }
+        public function task_edit(Request $request,$id){
+        $data = $request->except('_token');
+        $task =Task::find($id);
+        $data['customer_id'] = auth()->user()->id;
+        // dd($data);
+        if ($request->hasFile('file')) {
+            $image = $request->file('file');
+            $imageName = time() . '.' . $image->extension();
+            $imagePath = $image->storeAs('task', $imageName, 'public');
+            $imagePath = url('/storage/app/public/')."/".$imagePath;
+            $data['file'] = $imagePath;
+        }
+        $task->update($data);
+        return redirect()->back()->with('message', 'Task has been updated');
+    }
+
 
     public function change_status(Request $request, $id){
         // dd($request->all());
@@ -262,6 +344,17 @@ class ProfileController extends Controller
     public function buyer_create(Request $request){
         $data = $request->except('_token');
         $user = new Buyer();
+                         if ($request->hasFile('image')) {
+        $profileImage = $request->file('image');
+        $profileImageName = time() . '_' . $profileImage->getClientOriginalName();
+
+        $directory = 'images';
+        $profileImage->storeAs($directory, $profileImageName, 'public');
+        $url =url('/');
+        $completeImagePath = $url.'/'.'storage/app/public/' . $directory . '/' . $profileImageName;
+
+        $data['image'] = $completeImagePath;
+    }
         $user->create($data);
         return redirect()->back()->with('message', 'Buyer has been Created Successfully');
     }
@@ -269,18 +362,40 @@ class ProfileController extends Controller
     {
         $data = $request->except('_token');
         $user = Buyer::find($id);
+                         if ($request->hasFile('image')) {
+        $profileImage = $request->file('image');
+        $profileImageName = time() . '_' . $profileImage->getClientOriginalName();
+
+        $directory = 'images';
+        $profileImage->storeAs($directory, $profileImageName, 'public');
+        $url =url('/');
+        $completeImagePath = $url.'/'.'storage/app/public/' . $directory . '/' . $profileImageName;
+
+        $data['image'] = $completeImagePath;
+    }
         $user->update($data);
         return redirect()->back()->with('message', 'Buyer has been updated successfully');
     }
 
     public function sellers(){
-        $sellers = Buyer::all();
+        $sellers = Seller::all();
         return view('sellers', compact('sellers'));
     }
 
     public function seller_create(Request $request){
         $data = $request->except('_token');
         $user = new Seller();
+                         if ($request->hasFile('image')) {
+        $profileImage = $request->file('image');
+        $profileImageName = time() . '_' . $profileImage->getClientOriginalName();
+
+        $directory = 'images';
+        $profileImage->storeAs($directory, $profileImageName, 'public');
+        $url =url('/');
+        $completeImagePath = $url.'/'.'storage/app/public/' . $directory . '/' . $profileImageName;
+
+        $data['image'] = $completeImagePath;
+    }
         $user->create($data);
         return redirect()->back()->with('message', 'Seller has been Created Successfully');
     }
@@ -288,6 +403,17 @@ class ProfileController extends Controller
     {
         $data = $request->except('_token');
         $user = Seller::find($id);
+                         if ($request->hasFile('image')) {
+        $profileImage = $request->file('image');
+        $profileImageName = time() . '_' . $profileImage->getClientOriginalName();
+
+        $directory = 'images';
+        $profileImage->storeAs($directory, $profileImageName, 'public');
+        $url =url('/');
+        $completeImagePath = $url.'/'.'storage/app/public/' . $directory . '/' . $profileImageName;
+
+        $data['image'] = $completeImagePath;
+    }
         $user->update($data);
         return redirect()->back()->with('message', 'Seller has been updated successfully');
     }

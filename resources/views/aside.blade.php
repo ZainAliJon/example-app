@@ -10,7 +10,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{url('/public/dashboard/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ auth()->user()->image}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ auth()->user()->role }}</a>
@@ -53,7 +53,7 @@
               </li>
             </ul>
           </li>
-         {{--  <li class="nav-item @if(Request::url() == url('/sellers')) menu-open @endif">
+           <li class="nav-item @if(Request::url() == url('/sellers')) menu-open @endif">
             <a href="#" class="nav-link @if(Request::url() == url('/sellers')) active  @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -69,7 +69,7 @@
                 </a>
               </li>
             </ul>
-          </li> --}}
+          </li> 
           <li class="nav-item @if(Request::url() == url('/buyers')) menu-open @endif">
             <a href="#" class="nav-link @if(Request::url() == url('/buyers')) active  @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>

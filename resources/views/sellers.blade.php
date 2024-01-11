@@ -13,12 +13,12 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header row">
-            <h3 class="card-title col-10">Buyers</h3>
-            <button data-target="#user-modal" data-toggle="modal" type="button" class="btn btn-outline-primary btn-block col-2"><i class="fas fa-users"></i> Add Buyer</button>
+            <h3 class="card-title col-10">Sellers</h3>
+            <button data-target="#user-modal" data-toggle="modal" type="button" class="btn btn-outline-primary btn-block col-2"><i class="fas fa-users"></i> Add Sellers</button>
           </div>
           <div class="row">
 
-            @foreach($buyers as $buyer)
+            @foreach($sellers as $seller)
             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column mt-2">
               <div class="card bg-light d-flex flex-fill mx-2">
                 {{-- <div class="card-header text-muted border-bottom-0">
@@ -27,18 +27,18 @@
                 <div class="card-body pt-0">
                   <div class="row">
                     <div class="col-7 mt-3">
-                      <h2 class="lead"><b>{{$buyer->name}}</b></h2>
+                      <h2 class="lead"><b>{{$seller->name}}</b></h2>
                       {{-- <p class="text-muted text-sm"><b>Email: </b> {{$customer->email}} </p> --}}
                     </div>
                     <div class="col-5 text-center">
 
-                      <img src="{{url('/public/dashboard/dist/img/user1-128x128.jpg')}}" alt="user-avatar" class="img-circle img-fluid">
+                      <img src="{{$seller->image}}" alt="user-avatar" class="img-circle img-fluid">
                     </div>
                   </div>
                 </div>
                 <div class="card-footer">
                   <div class="text-right">
-                    <a data-target="#user-edit-modal{{$buyer->id}}" data-toggle="modal" class="btn btn-sm btn-primary">
+                    <a data-target="#user-edit-modal{{$seller->id}}" data-toggle="modal" class="btn btn-sm btn-primary">
                       <i class="fas fa-user"></i> Edit
                     </a>
                   </div>
@@ -51,13 +51,13 @@
 
         <div class="modal fade" id="user-modal" style="display: none;" aria-hidden="true">
           <div class="modal-dialog">
-            <form class="form-horizontal" method="post" action="{{url('/buyer/create')}}">
+            <form class="form-horizontal" method="post" action="{{url('/seller/create')}}" enctype="multipart/form-data">
               @csrf
               <div class="modal-content">
                 <div class="modal-body pb-0">
                  <div class="card card-info">
                   <div class="card-header">
-                    <h3 class="card-title">Add Buyer</h3>
+                    <h3 class="card-title">Add Seller</h3>
                   </div>
                   <div class="card-body">
                     <div class="form-group row">
@@ -66,6 +66,12 @@
                         <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="name">
                       </div>
                     </div>
+                                                       <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">Profile Image</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" id="inputEmail3" placeholder="Name" name="image">
+                  </div>
+                </div>
                   </div>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -80,23 +86,29 @@
     </div>
   </div>
 
-  @foreach($buyers as $buyer)
+  @foreach($sellers as $seller)
   <div class="row">
-    <div class="modal fade" id="user-edit-modal{{$buyer->id}}" style="display: none;" aria-hidden="true">
+    <div class="modal fade" id="user-edit-modal{{$seller->id}}" style="display: none;" aria-hidden="true">
       <div class="modal-dialog">
-        <form class="form-horizontal" method="post" action="{{url('/buyer/edit/'.$buyer->id)}}">
+        <form class="form-horizontal" method="post" action="{{url('/seller/edit/'.$seller->id)}}" enctype="multipart/form-data">
           @csrf
           <div class="modal-content">
             <div class="modal-body pb-0">
              <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Edit Buyer</h3>
+                <h3 class="card-title">Edit Seller</h3>
               </div>
               <div class="card-body">
                 <div class="form-group row">
                   <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="name" value="{{$buyer->name}}">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="name" value="{{$seller->name}}">
+                  </div>
+                </div>
+                                                   <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">Profile Image</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" id="inputEmail3" placeholder="Name" name="image">
                   </div>
                 </div>
               </div>
@@ -114,7 +126,4 @@
   @endsection
 
 
-  {{-- @dd('a') --}}
-  {{--  --}}
 
-  {{--  --}}

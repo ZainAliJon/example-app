@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-5 text-center">
 
-                      <img src="{{url('/public/dashboard/dist/img/user1-128x128.jpg')}}" alt="user-avatar" class="img-circle img-fluid">
+                      <img src="{{$customer->image}}" alt="user-avatar" class="img-circle img-fluid">
                     </div>
                   </div>
                 </div>
@@ -52,7 +52,7 @@
 
         <div class="modal fade" id="user-modal" style="display: none;" aria-hidden="true">
           <div class="modal-dialog">
-            <form class="form-horizontal" method="post" action="{{url('/customer/create')}}">
+            <form class="form-horizontal" method="post" action="{{url('/customer/create')}}" enctype="multipart/form-data">
               @csrf
               <div class="modal-content">
                 <div class="modal-body pb-0">
@@ -65,6 +65,12 @@
                       <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
                       <div class="col-sm-10">
                         <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="name">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="inputEmail3" class="col-sm-2 col-form-label">Profile Image</label>
+                      <div class="col-sm-10">
+                        <input type="file" class="form-control" id="inputEmail3" placeholder="Name" name="image">
                       </div>
                     </div>
                     <div class="form-group row">
@@ -97,7 +103,7 @@
     <div class="row">
     <div class="modal fade" id="user-edit-modal{{$custome->id}}" style="display: none;" aria-hidden="true">
       <div class="modal-dialog">
-        <form class="form-horizontal" method="post" action="{{url('/customer/edit/'.$custome->id)}}">
+        <form class="form-horizontal" method="post" action="{{url('/customer/edit/'.$custome->id)}}" enctype="multipart/form-data">
           @csrf
           <div class="modal-content">
             <div class="modal-body pb-0">
@@ -110,6 +116,12 @@
                   <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="name" value="{{$custome->name}}">
+                  </div>
+                </div>
+                                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">Profile Image</label>
+                  <div class="col-sm-10">
+                    <input type="file" class="form-control" id="inputEmail3" placeholder="Name" name="image">
                   </div>
                 </div>
                 <div class="form-group row">
@@ -138,8 +150,3 @@
     @endforeach
   @endsection
 
-
-  {{-- @dd('a') --}}
-  {{--  --}}
-
-  {{--  --}}

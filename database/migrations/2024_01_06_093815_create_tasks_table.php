@@ -17,12 +17,19 @@ return new class extends Migration
             $table->string('price')->nullable();
             $table->string('description')->nullable();
             $table->string('number')->nullable();
-            $table->string('seller')->nullable();
-            $table->string('buyer')->nullable();
+            $table->string('request_id')->nullable();
+            $table->string('request_date')->nullable();
+            $table->string('entry_ref')->nullable();
+            $table->string('catalog_id')->nullable();
+            $table->string('notes')->nullable();
             $table->string('status')->default('pending');
+            $table->string('invoice_line_item')->nullable();
+            $table->string('invoice_id')->nullable();
             $table->string('file')->nullable();
             $table->foreignId('customer_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->foreignId('classifier_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade')->nullable();
+             $table->foreignId('seller_id')->constrained('sellers')->onDelete('cascade')->onUpdate('cascade')->nullable();
+            $table->foreignId('buyer_id')->constrained('buyers')->onDelete('cascade')->onUpdate('cascade')->nullable();
             $table->timestamps();
         });
     }

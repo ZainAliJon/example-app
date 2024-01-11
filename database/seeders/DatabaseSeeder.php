@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => Hash::make('12345678'),
             'role' => 'Admin',
+            'image'=>'http://localhost/example-app/storage/app/public/images/1704969124_download.png'
         ]);
     }
 }
