@@ -22,7 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'image',
+        'user_name',
+        'user_id'
     ];
 
     /**
@@ -45,13 +46,4 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function tasks()
-    {
-        return $this->hasMany(Task::class);
-    }
-
-    public function inboxes()
-    {
-        return $this->hasMany(Inbox::class);
-    }
 }

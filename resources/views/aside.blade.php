@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{url('/')}}" class="brand-link">
-      <img src="{{url('/public/icon.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">JunctionNet</span>
+      
+      <span class="brand-text font-weight-light">Password Manager</span>
     </a>
 
     <!-- Sidebar -->
@@ -10,10 +10,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ auth()->user()->image}}" class="img-circle elevation-2" alt="User Image">
+          
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ auth()->user()->role }}</a>
+          <a href="#" class="d-block">{{ auth()->user()->user_name}}</a>
           
         </div>
       </div>
@@ -36,97 +36,42 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           @if(auth()->user()->role == "Admin")
-         <li class="nav-item @if(Request::url() == url('/customers')) menu-open @endif">
-            <a href="#" class="nav-link @if(Request::url() == url('/customers')) active  @endif">
+         <li class="nav-item ">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Customer
+                Users
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url('/customers')}}" class="nav-link">
+                <a href="{{url('/users')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View Customer</p>
+                  <p>View Users</p>
                 </a>
               </li>
             </ul>
           </li>
           @endif
-          @if(auth()->user()->role == "Admin" || auth()->user()->role == "customer")
-           <li class="nav-item @if(Request::url() == url('/sellers')) menu-open @endif">
-            <a href="#" class="nav-link @if(Request::url() == url('/sellers')) active  @endif">
+                 <li class="nav-item ">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Sellers
+                Password Manager
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url('/sellers')}}" class="nav-link">
+                <a href="{{url('/site')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View Sellers</p>
-                </a>
-              </li>
-            </ul>
-          </li> 
-          <li class="nav-item @if(Request::url() == url('/buyers')) menu-open @endif">
-            <a href="#" class="nav-link @if(Request::url() == url('/buyers')) active  @endif">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Buyers
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{url('/buyers')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>View Buyers</p>
+                  <p>View Details</p>
                 </a>
               </li>
             </ul>
           </li>
-          @endif
-          @if(auth()->user()->role == "Admin")
-          <li class="nav-item  @if(Request::url() == url('/classifiers')) menu-open @endif">
-            <a href="#" class="nav-link @if(Request::url() == url('/classifiers')) active  @endif">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Classifier
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{url('/classifiers')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> View Classifier</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          @endif
-          <li class="nav-item @if(Request::url() == url('/tasks')) menu-open @endif">
-            <a href="#" class="nav-link @if(Request::url() == url('/tasks')) active  @endif">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Tasks
-                <i class="fas fa-angle-left right"></i>
-                {{-- <span class="badge badge-info right">6</span> --}}
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{url('/tasks')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>View Tasks</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

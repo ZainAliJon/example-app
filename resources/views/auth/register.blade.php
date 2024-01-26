@@ -15,6 +15,11 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+                <div class="mt-4">
+            <x-input-label for="username" :value="__('User Name')" />
+            <x-text-input id="Username" class="block mt-1 w-full" type="text" name="user_name" :value="old('user_name')" required autofocus autocomplete="user_name" />
+            <x-input-error :messages="$errors->get('user_name')" class="mt-2" />
+        </div>
 
         <!-- Password -->
         <div class="mt-4">
@@ -23,7 +28,7 @@
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
-                            required autocomplete="new-password" />
+                            required autocomplete="new-password" placeholder="Must be in uppercase,lowercase,number and symbols" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
