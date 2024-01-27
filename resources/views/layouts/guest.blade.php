@@ -37,7 +37,7 @@
 
         toggleButtons.forEach(function (toggleButton) {
             toggleButton.addEventListener('click', function () {
-                var passwordInput = toggleButton.closest('.input-group').querySelector('.togglePasswordinput');
+                var passwordInput = toggleButton.parentElement.parentElement.parentElement.children[0];
 
                 if (passwordInput) {
                     if (passwordInput.type === 'password') {
