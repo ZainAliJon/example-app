@@ -202,14 +202,7 @@
 </script>
 
 <script>
-$(document).ready(function(){
-   var table = $('#example1').DataTable({
-      dom: 'Alfrtip',
-      alphabetSearch: {
-         column: 0
-      }      
-   });
-});
+
 </script>
 <script type="text/javascript">
   var Toast = Swal.mixin({
@@ -338,5 +331,11 @@ $(document).ready(function(){
       });
     })
   })
+
+
+      $(document).ready(function(){
+  $('.alphabet').addClass('card');
+    })
+
 </script>
 </body>

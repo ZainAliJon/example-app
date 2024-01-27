@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('site_name');
             $table->string('user_id')->nullable();
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable(); 
+            $table->string('name')->nullable();
             $table->string('email');
             $table->string('user_name')->nullable();
             $table->string('password');
+            $table->string('pin')->nullable();
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }
