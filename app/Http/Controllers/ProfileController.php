@@ -29,6 +29,8 @@ class ProfileController extends Controller
         ]);
     }
 
+
+
     /**
      * Update the user's profile information.
      */
@@ -73,7 +75,7 @@ class ProfileController extends Controller
 
 // customer
    public function users(){
-    $users = User::where('role', 'user')->get();
+    $users = User::get();
     return view('customers', compact('users'));
 }
 

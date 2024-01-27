@@ -1,5 +1,6 @@
 @extends('main')
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <style type="text/css">
   @media (min-width: 576px){
@@ -325,7 +326,13 @@ table.dataTable {
   background-color: #c8d9f1;
   color: #467fcf;
 }
-
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ced4da;
+    outline: 0;
+    box-shadow: inset 0 0 0 transparent;
+}
 .avatar-pink {
   background-color: #fcd3e1;
   color: #f66d9b;
@@ -340,15 +347,17 @@ table.dataTable {
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header row">
-          <h3 class="card-title col-10">Password Mananger</h3>
-          <button data-target="#user-modal" data-toggle="modal" type="button" class="btn btn-outline-primary btn-block col-2"><i class="fas fa-users"></i> Add Sites</button>
+        <div class="p-2 d-flex align-items-center justify-content-between">
+          <div>
+          <h3 class="card-title">Password Mananger</h3>
+          </div>
+          <button data-target="#user-modal" data-toggle="modal" type="button" class="btn btn-outline-primary "><i class="fas fa-users"></i> Add Sites</button>
         </div>
 
       </div>
       
 
-      <table id="example1" class="table table-hover responsive nowrap border-0" style="width:100%">
+      <table id="example1" class="table table-hover table-responsive nowrap border-0" style="width:100%">
         <thead>
           <tr>
             <th>Name</th>
@@ -383,7 +392,7 @@ table.dataTable {
              </div>
            </td>
          </tr>
-           @endforeach
+         @endforeach
 
 
        </tbody>
@@ -428,12 +437,18 @@ table.dataTable {
                 </div>
                 <div class="form-group row">
                   <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Must be in uppercase, lowercase,number and symbol" name="password">
-                    <div class="text-danger ErrorDiv" style="display: none;">Password error: Must be in uppercase, lowercase, number, and symbol</div>
+                  <div class="col-sm-10 " >
+                    <div class="d-flex custom-form-control" style="border: 1px solid #ced4da;border-radius: .25rem">
+                      <input type="password" class="form-control" style="border: none" id="inputPassword3" placeholder="Must be in uppercase, lowercase, number, and symbol" name="password">
+                      <div class="text-danger ErrorDiv" style="display: none;">Password error: Must be in uppercase, lowercase, number, and symbol</div>
+
+                      <button type="button" id="togglePassword" class="btn btn-link">
+                        <i class="far fa-eye"></i>
+                      </button>
+                    </div>
                     @if($errors->has('password'))
-                    <div class="text-danger">{{ $errors->first('password') }}</div>
-                    @endif
+                      <div class="text-danger">{{ $errors->first('password') }}</div>
+                      @endif
                   </div>
                 </div>
                 <div class="form-group row">
@@ -545,20 +560,31 @@ table.dataTable {
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 <script type="text/javascript">
-  $('#example1').DataTable( {
-    dom: 'Bfrtip',
+  $(document).ready(function () {
+    var table = $('#example1').DataTable({
+    dom: 'BfrtipAlfrtip', // Combine the DOM options
     buttons: [
-      'copy', 'csv', 'excel', 'pdf', 'print'
-      ]
-  } );
-  $(document).ready(function(){
-   var table = $('#example1').DataTable({
-      dom: 'Alfrtip',
-      alphabetSearch: {
-         column: 0
-      }      
-   });
-});
+    'copy', 'csv', 'excel', 'pdf', 'print'
+    ],
+    alphabetSearch: {
+      column: 0
+    }
+  });
+
+
+  });
+  $('#togglePassword').click(function() {
+    var passwordInput = $('#inputPassword3');
+    var passwordFieldType = passwordInput.attr('type');
+
+    if (passwordFieldType === 'password') {
+      passwordInput.attr('type', 'text');
+      $('#togglePassword i').removeClass('far fa-eye').addClass('far fa-eye-slash');
+    } else {
+      passwordInput.attr('type', 'password');
+      $('#togglePassword i').removeClass('far fa-eye-slash').addClass('far fa-eye');
+    }
+  });
 </script>
 @endsection
 

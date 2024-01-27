@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('site_name');
             $table->string('user_id')->nullable();
             $table->string('name')->nullable();
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('user_name')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('pin')->nullable();
             $table->string('notes')->nullable();
             $table->timestamps();
