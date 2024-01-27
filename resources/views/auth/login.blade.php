@@ -14,15 +14,28 @@
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+    <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+    <div class="input-group" style="position: relative;">
+        <input
+            id="password"
+            type="password"
+            class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm block mt-1 w-full"
+            name="password"
+            required
+            autocomplete="current-password"
+            placeholder="Password"
+        >
+        <span class="" style="position:absolute;right: 10px;top: 10px;cursor: pointer;">
+            <span class="input-group-text">
+                <i id="togglePassword" class="fas fa-eye"></i>
+            </span>
+        </span>
+    </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+</div>
+
 
         <!-- Remember Me -->
         <div class="block mt-4">
