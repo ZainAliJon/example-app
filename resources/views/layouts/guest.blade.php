@@ -33,22 +33,25 @@
         </div>
         <script>
     document.addEventListener("DOMContentLoaded", function () {
-        var passwordInput = document.getElementById('password');
-        var toggleButton = document.getElementById('togglePassword');
+        var passwordInput = document.querySelector('.togglePasswordinput');
+        var toggleButtons = document.querySelectorAll('.togglePassword');
 
-        toggleButton.addEventListener('click', function () {
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleButton.classList.remove('fa-eye');
-                toggleButton.classList.add('fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                toggleButton.classList.remove('fa-eye-slash');
-                toggleButton.classList.add('fa-eye');
-            }
+        toggleButtons.forEach(function (toggleButton) {
+            toggleButton.addEventListener('click', function () {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    toggleButton.classList.remove('fa-eye');
+                    toggleButton.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    toggleButton.classList.remove('fa-eye-slash');
+                    toggleButton.classList.add('fa-eye');
+                }
+            });
         });
     });
 </script>
+
 
 
     </body>
