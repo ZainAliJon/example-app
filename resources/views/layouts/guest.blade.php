@@ -33,24 +33,31 @@
         </div>
         <script>
     document.addEventListener("DOMContentLoaded", function () {
-        var passwordInput = document.querySelector('.togglePasswordinput');
         var toggleButtons = document.querySelectorAll('.togglePassword');
 
         toggleButtons.forEach(function (toggleButton) {
             toggleButton.addEventListener('click', function () {
-                if (passwordInput.type === 'password') {
-                    passwordInput.type = 'text';
-                    toggleButton.classList.remove('fa-eye');
-                    toggleButton.classList.add('fa-eye-slash');
+                var passwordInput = toggleButton.closest('.input-group').querySelector('.togglePasswordinput');
+
+                if (passwordInput) {
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        toggleButton.classList.remove('fa-eye');
+                        toggleButton.classList.add('fa-eye-slash');
+                    } else {
+                        passwordInput.type = 'password';
+                        toggleButton.classList.remove('fa-eye-slash');
+                        toggleButton.classList.add('fa-eye');
+                    }
                 } else {
-                    passwordInput.type = 'password';
-                    toggleButton.classList.remove('fa-eye-slash');
-                    toggleButton.classList.add('fa-eye');
+                    console.error('Password input field not found.');
                 }
             });
         });
     });
 </script>
+
+
 
 
 
