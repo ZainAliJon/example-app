@@ -13,8 +13,8 @@
 
         <!-- Scripts -->
         {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-<script src="{{ asset('js/app.js') }}"></script>
+        <link rel="stylesheet" href="{{ url('/resources/css/app.css') }}">
+<script src="{{ url('/resources/js/app.js') }}"></script>
 
     </head>
     <body class="font-sans text-gray-900 antialiased">
