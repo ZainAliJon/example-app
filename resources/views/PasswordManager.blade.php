@@ -439,7 +439,7 @@ table.dataTable {
                   <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
                   <div class="col-sm-10 " >
                     <div class="d-flex custom-form-control" style="border: 1px solid #ced4da;border-radius: .25rem">
-                      <input type="password" class="form-control" style="border: none" id="inputPassword3" placeholder="Must be in uppercase, lowercase, number, and symbol" name="password">
+                      <input type="password" class="form-control" style="border: none" id="inputPassword3" placeholder="" name="password">
                       <div class="text-danger ErrorDiv" style="display: none;">Password error: Must be in uppercase, lowercase, number, and symbol</div>
 
                       <button type="button" id="togglePassword" class="btn btn-link">
@@ -518,7 +518,7 @@ table.dataTable {
               <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
-                  <input type="password" class="form-control inputPassword33"  placeholder="Must be in uppercase, lowercase,number and symbol" value="{{$site->password}}" name="password">
+                  <input type="password" class="form-control inputPassword33"  placeholder="" value="{{$site->password}}" name="password">
                   <div class="text-danger ErrorDivEdit" style="display: none;">Password error: Must be in uppercase, lowercase, number, and symbol</div>
                   @if($errors->has('password'))
                   <div class="text-danger">{{ $errors->first('password') }}</div>
