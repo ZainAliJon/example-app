@@ -85,6 +85,7 @@ public function user_create(Request $request){
         'password' => [
             'required',
             'string',
+            'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
         ],
     ]);
 
@@ -110,6 +111,7 @@ public function user_edit(Request $request, $id)
 {
     $validator = Validator::make($request->all(), [
         'email' => 'required|email|unique:users,email,' . $id,
+        'password' => 'nullable|string|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
     ]);
 
       if($validator->fails()) {
@@ -155,7 +157,6 @@ public function site_create(Request $request){
         'password' => [
             'required',
             'string',
-            'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
         ],
     ]);
 
@@ -177,7 +178,6 @@ public function site_edit(Request $request, $id)
         'password' => [
             'required',
             'string',
-            'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
         ],
     ]);
 
