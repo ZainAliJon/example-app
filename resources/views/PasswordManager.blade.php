@@ -129,7 +129,7 @@
     flex-wrap: wrap;
   }
   #example1_paginate{
-   display: none;
+   /*display: none;*/
  }
  #example1 thead tr th{
   border-bottom:none;
