@@ -353,7 +353,7 @@ table.dataTable {
       <div class="card">
         <div class="p-2 d-flex align-items-center justify-content-between">
           <div>
-          <h3 class="card-title">Manage Passwords</h3>
+          <h3 class="card-title"></h3>
           </div>
           <button data-target="#user-modal" data-toggle="modal" type="button" class="btn btn-outline-primary "><i class="fas fa-users"></i> Add Record</button>
         </div>
