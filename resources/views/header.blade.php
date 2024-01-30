@@ -53,6 +53,11 @@ border: 1px solid #979797!important;
   margin-left:0px !important;
   
 }
+@media screen  and (max-width: 400px) {
+  .navbar-nav .nav-item .nav-link{
+    padding-left:0px !important;
+  }
+}
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,4JUdGzvrMFDWrUUwY3toJATSeNwjn54LkCnKBPRzDuhzi5vSepHfUckJNxRL2gjkNrSqtCoRUrEDAgRwsQvVCjZbRyFTLRNyDmT1a1boZVfamily=Poppins&display=swap');
 body{
   font-family: "Lato", sans-serif;
