@@ -29,7 +29,7 @@
             <div class="w-full sm:max-w-md  px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </div>
-    <div style="position: absolute;bottom: 10px; right: 30px;font-size: 20px;">Version: <span style="color: #0076ba">v1.0.0</span></div>
+    <div style="position: absolute;bottom: 10px; right: 30px;font-size: 20px;">Version: <span style="color: #0076ba">v1.1.0</span></div>
         </div>
         <script>
     document.addEventListener("DOMContentLoaded", function () {
