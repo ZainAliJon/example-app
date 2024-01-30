@@ -42,7 +42,7 @@
             <a href="{{url('/site')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Password Manager
+                Manage Password
                
               </p>
             </a>

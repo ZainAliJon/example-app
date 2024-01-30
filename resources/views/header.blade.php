@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{url('/public/dashboard/dist/css/adminlte.min.css')}}">
+  
   <link type="text/css" href="//gyrocode.github.io/jquery-datatables-alphabetSearch/1.2.5/css/dataTables.alphabetSearch.css" rel="stylesheet" />
 <style type="text/css">/* Chart.js */
 @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}
@@ -26,6 +27,7 @@ display: flex;
 justify-content: space-evenly;
  margin-bottom:15px!important;
 }
+
 .alphabet-info-display{
 align-self: center;
 }
@@ -44,6 +46,18 @@ background: #dcdcdc!important;
 color: #333!important;
 border: 1px solid #979797!important;
 }
+.content-wrapper{
+  margin-left:0px !important;
+}
+.main-header{
+  margin-left:0px !important;
+  
+}
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,4JUdGzvrMFDWrUUwY3toJATSeNwjn54LkCnKBPRzDuhzi5vSepHfUckJNxRL2gjkNrSqtCoRUrEDAgRwsQvVCjZbRyFTLRNyDmT1a1boZVfamily=Poppins&display=swap');
+body{
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+}
 </style></head>
 <!--
 `body` tag options:
@@ -55,6 +69,6 @@ border: 1px solid #979797!important;
   * sidebar-mini
 -->
 <body class="sidebar-mini" style="height: auto;">
-<div class="wrapper">
+<div class="wrapper container border shadow">
 @include('nav')
-@include('aside')
+{{-- @include('aside') --}}

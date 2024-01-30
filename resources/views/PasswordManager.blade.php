@@ -11,9 +11,10 @@
     .dataTables_length{
       display: none;
     }
-    .dataTables_filter{
+    #example1_wrapper #example1_wrapper .dataTables_filter{
       display: none;
     }
+    
     .dataTables_info{
      display: none;
    }
@@ -143,6 +144,9 @@
   color: #F4F6F9;
   font-size: 0px;
   padding: 0px;
+}
+.alphabet-group{
+  visibility: collapse;
 }
 .table {
   border-spacing: 0 0.85rem !important;
@@ -349,9 +353,9 @@ table.dataTable {
       <div class="card">
         <div class="p-2 d-flex align-items-center justify-content-between">
           <div>
-          <h3 class="card-title">Password Mananger</h3>
+          <h3 class="card-title">Manage Passwords</h3>
           </div>
-          <button data-target="#user-modal" data-toggle="modal" type="button" class="btn btn-outline-primary "><i class="fas fa-users"></i> Add Sites</button>
+          <button data-target="#user-modal" data-toggle="modal" type="button" class="btn btn-outline-primary "><i class="fas fa-users"></i> Add Record</button>
         </div>
 
       </div>
@@ -550,8 +554,8 @@ table.dataTable {
 </div>
 
 @endforeach
-
-<script  src="https://code.jquery.com/jquery-3.7.0.js"></script>
+ 
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -560,19 +564,22 @@ table.dataTable {
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 <script type="text/javascript">
-  $(document).ready(function () {
-    var table = $('#example1').DataTable({
-    dom: 'BfrtipAlfrtip', // Combine the DOM options
+  $('#example1').DataTable( {
+    dom: 'Bfrtip',
     buttons: [
-    'copy', 'csv', 'excel', 'pdf', 'print'
-    ],
-    alphabetSearch: {
-      column: 0
-    }
-  });
-
-
-  });
+      'copy', 'csv', 'excel', 'pdf', 'print'
+      ]
+  } );
+$(document).ready(function(){
+   var table = $('#example1').DataTable({
+      dom: 'Alfrtip',
+      alphabetSearch: {
+         column: 0
+      }      
+   });
+});
+</script>
+<script type="text/javascript">
   $('#togglePassword').click(function() {
     var passwordInput = $('#inputPassword3');
     var passwordFieldType = passwordInput.attr('type');

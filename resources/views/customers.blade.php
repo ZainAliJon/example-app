@@ -9,8 +9,11 @@
     .dataTables_length{
       display: none;
     }
-    .dataTables_filter{
+    #example1_wrapper #example1_wrapper .dataTables_filter{
       display: none;
+    }
+    #example1{
+      margin-right: 100%;
     }
     .dataTables_info{
      display: none;
@@ -335,6 +338,9 @@ background: #F4F6F9;
         font-size: 0px;
     padding: 0px;
 }
+.card-header::after{
+  display: none;
+}
 </style>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
@@ -343,11 +349,10 @@ background: #F4F6F9;
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header row mx-2">
-          <h3 class="card-title" style="align-self: center;width: 85%;">Users</h3>
-          <button data-target="#user-modal" data-toggle="modal" type="button" class="btn btn-outline-primary btn-block" style="width:15%;"><i class="fas fa-users"></i> Add User</button>
+        <div class="card-header row mx-2 justify-content-between">
+          <h3 class="card-title text-left" style="align-self: center;">Users</h3>
+          <div><button data-target="#user-modal" data-toggle="modal" type="button" class="btn btn-outline-primary text-right"><i class="fas fa-users"></i> Add User</button></div>
         </div>
-
       </div>
 
 
@@ -359,8 +364,7 @@ background: #F4F6F9;
             <th>Email</th>
             <th>User Name</th>
             <th>Sign Up Date</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -370,13 +374,10 @@ background: #F4F6F9;
           <td>{{$user->email}}</td>
          <td>{{$user->user_name}}</td>
           <td>{{$user->created_at->format('d/m/y')}}</td>
-         
-          <td>
-            <div class=""><a data-target="#user-edit-modal{{$user->id}}" data-toggle="modal" class="btn btn-sm btn-primary text-white" style="padding: 3px 8px;">
+          <td class="d-flex">
+            <div class="mx-2"><a data-target="#user-edit-modal{{$user->id}}" data-toggle="modal" class="btn btn-sm btn-primary text-white" style="padding: 3px 8px;">
               <i class="fas fa-user"></i> Edit
             </a></div>
-          </td>
-          <td>
             <div class="">
            <a href="{{url('/user/delete',['id'=>$user->id])}}" class="btn btn-danger text-white" style="padding: 3px 8px;">delete</a>
             </div>
