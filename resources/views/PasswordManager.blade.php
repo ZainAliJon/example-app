@@ -19,7 +19,7 @@
      display: none;
    }
    .pagination{
-     display: none;
+     /*display: none;*/
    }
    .alphabet-info-display{
      display: none;
