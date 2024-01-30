@@ -69,38 +69,38 @@ class ProfileController extends Controller
     }
 
     public function welcome(){
-       return redirect('/users');
-   }
+        return redirect('/site');
+    }
     //users
 
 // customer
-   public function users(){
-    $users = User::get();
-    return view('customers', compact('users'));
-}
-
-public function user_create(Request $request){
-    $validator = Validator::make($request->all(), [
-        'email' => 'required|email|unique:users,email',
-        'password' => [
-            'required',
-            'string',
-            'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
-        ],
-    ]);
-
-
-
-    if($validator->fails()) {
-       return "Password error: Must be in uppercase, lowercase, number, and symbol";
+    public function users(){
+        $users = User::get();
+        return view('customers', compact('users'));
     }
-    $data = $request->except('_token');
-    $user = new User();
-    $data['password'] = Hash::make($request->password);
 
-    $data['role'] = 'user';
-    $data['user_id'] = auth()->user()->id;
-    if (User::where('email', $data['email'])->exists()) {
+    public function user_create(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users,email',
+            'password' => [
+                'required',
+                'string',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
+            ],
+        ]);
+
+
+
+        if($validator->fails()) {
+         return "Password error: Must be in uppercase, lowercase, number, and symbol";
+     }
+     $data = $request->except('_token');
+     $user = new User();
+     $data['password'] = Hash::make($request->password);
+
+     $data['role'] = 'user';
+     $data['user_id'] = auth()->user()->id;
+     if (User::where('email', $data['email'])->exists()) {
         return redirect()->back()->with('error', 'User with the same email already exists. Please try different Email');
     }
 
@@ -114,33 +114,33 @@ public function user_edit(Request $request, $id)
         'password' => 'nullable|string|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
     ]);
 
-      if($validator->fails()) {
-       return "Password error: Must be in uppercase, lowercase, number, and symbol";
-    }
+    if($validator->fails()) {
+     return "Password error: Must be in uppercase, lowercase, number, and symbol";
+ }
 
-    $data = $request->except('_token');
-    $user = User::find($id);
+ $data = $request->except('_token');
+ $user = User::find($id);
 
-    if ($data['email'] != $user->email && User::where('email', $data['email'])->exists()) {
-        return redirect()->back()->with('error', 'User with the same email already exists. Please try a different email.');
-    }
+ if ($data['email'] != $user->email && User::where('email', $data['email'])->exists()) {
+    return redirect()->back()->with('error', 'User with the same email already exists. Please try a different email.');
+}
 
-    if ($request->filled('password')) {
-        $data['password'] = Hash::make($request->password);
-    } else {
-        unset($data['password']);
-    }
+if ($request->filled('password')) {
+    $data['password'] = Hash::make($request->password);
+} else {
+    unset($data['password']);
+}
 
-    $user->update($data);
+$user->update($data);
 
-    return redirect()->back()->with('message', 'User has been updated successfully');
+return redirect()->back()->with('message', 'User has been updated successfully');
 }
 
 public function Delete($id)
 {
-   User::destroy($id);
+ User::destroy($id);
 
-   return redirect()->back();
+ return redirect()->back();
 } 
 
  //PasswordManager
@@ -153,7 +153,7 @@ public function sites(){
 public function site_create(Request $request){
     // dd($request->all());
     $validator = Validator::make($request->all(), [
-    
+
         'password' => [
             'required',
             'string',
@@ -161,40 +161,40 @@ public function site_create(Request $request){
     ]);
 
     if($validator->fails()) {
-       return "Password error: Must be in uppercase, lowercase, number, and symbol";
-    }
+     return "Password error: Must be in uppercase, lowercase, number, and symbol";
+ }
 
-    $data = $request->except('_token');
-    $site = new PasswordManager();
-    
-    $data['user_id'] = auth()->user()->id;
-    $site->create($data);
-    return "Success";
+ $data = $request->except('_token');
+ $site = new PasswordManager();
+
+ $data['user_id'] = auth()->user()->id;
+ $site->create($data);
+ return "Success";
 }
 public function site_edit(Request $request, $id)
 {
-        $validator = Validator::make($request->all(), [
-        
+    $validator = Validator::make($request->all(), [
+
         'password' => [
             'required',
             'string',
         ],
     ]);
 
-   if($validator->fails()) {
-       return "Password error: Must be in uppercase, lowercase, number, and symbol";
-    }
-    $data = $request->except('_token');
-    $site = PasswordManager::find($id);
+    if($validator->fails()) {
+     return "Password error: Must be in uppercase, lowercase, number, and symbol";
+ }
+ $data = $request->except('_token');
+ $site = PasswordManager::find($id);
 
-    $site->update($data);
-    return "Successfully updated";
+ $site->update($data);
+ return "Successfully updated";
 }
 public function Deletesites($id)
 {
-   PasswordManager::destroy($id);
+ PasswordManager::destroy($id);
 
-   return redirect()->back();
+ return redirect()->back();
 } 
  //
 
