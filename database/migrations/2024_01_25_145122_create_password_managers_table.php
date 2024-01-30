@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('password_managers', function (Blueprint $table) {
             $table->id();
-            $table->string('site_name');
+            $table->string('site_name')->nullable();
             $table->string('user_id')->nullable();
-            $table->string('name')->nullable();
+            $table->string('name');
             $table->string('email')->nullable();
             $table->string('user_name')->nullable();
             $table->string('password')->nullable();
