@@ -564,18 +564,16 @@ table.dataTable {
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 <script type="text/javascript">
-  $('#example1').DataTable( {
-    dom: 'Bfrtip',
-    buttons: [
-      'copy', 'csv', 'excel', 'pdf', 'print'
-      ]
-  } );
+  
 $(document).ready(function(){
    var table = $('#example1').DataTable({
       dom: 'Alfrtip',
       alphabetSearch: {
          column: 0
-      }      
+      },
+      buttons: [
+      'copy', 'csv', 'excel', 'pdf', 'print'
+      ]
    });
 });
 </script>
