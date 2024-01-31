@@ -40,12 +40,12 @@
         <i class="nav-icon fas fa-tachometer-alt"></i> Users
       </a>
     </li>
-    @endif
     <li class="nav-item ">
       <a class="nav-link"  href="{{url('/site')}}" role="button">
         <i class="nav-icon far fa-calendar-alt px-1"></i> Manage Passwords
       </a>
     </li>
+    @endif
     <li class="nav-item">
       <a class="nav-link" data-widget="fullscreen" href="#" role="button">
         <i class="fas fa-expand-arrows-alt"></i>
