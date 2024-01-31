@@ -375,8 +375,8 @@ table.dataTable {
           </tr>
         </thead>
         <tbody>
+          @foreach($sites as $index => $site)
           <tr>
-            @foreach($sites as $index => $site)
             <td class="font-weight-bold">{{$site->name}}</td>
             <td>{{$site->site_name}}</td>
             <td>{{$site->email}}</td>
@@ -564,20 +564,26 @@ table.dataTable {
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 <script type="text/javascript">
-  
+  $('#example1').DataTable( {
+    dom: 'Bfrtip',
+    buttons: [
+      'copy', 'csv', 'excel', 'pdf', 'print'
+      ]
+  } );
 $(document).ready(function(){
    var table = $('#example1').DataTable({
       dom: 'Alfrtip',
       alphabetSearch: {
          column: 0
-      },
-      buttons: [
-      'copy', 'csv', 'excel', 'pdf', 'print'
-      ]
+      }      
    });
 });
 </script>
 <script type="text/javascript">
+  $(document).ready(function(){
+    
+  $('.dataTables_paginate').eq(1).remove()
+  });
   $('#togglePassword').click(function() {
     var passwordInput = $('#inputPassword3');
     var passwordFieldType = passwordInput.attr('type');

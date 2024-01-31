@@ -508,19 +508,19 @@ background: #F4F6F9;
 
 
 
-
 <script type="text/javascript">
-  
-
+  $('#example1').DataTable( {
+    dom: 'Bfrtip',
+    buttons: [
+      'copy', 'csv', 'excel', 'pdf', 'print'
+      ]
+  } );
 $(document).ready(function(){
    var table = $('#example1').DataTable({
       dom: 'Alfrtip',
       alphabetSearch: {
          column: 0
-      },
-      buttons: [
-      'copy', 'csv', 'excel', 'pdf', 'print'
-      ]
+      }      
    });
 });
 </script>
