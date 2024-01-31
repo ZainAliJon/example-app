@@ -568,15 +568,17 @@ table.dataTable {
     dom: 'Bfrtip',
     buttons: [
       'copy', 'csv', 'excel', 'pdf', 'print'
-      ]
+      ],
+       paging: false
   } );
 $(document).ready(function(){
    var table = $('#example1').DataTable({
       dom: 'Alfrtip',
       alphabetSearch: {
          column: 0
-      }      
-   });
+      },
+       paging: false
+    });
 });
 </script>
 <script type="text/javascript">
