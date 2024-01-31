@@ -581,8 +581,8 @@ $(document).ready(function(){
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
-    
-  $('.dataTables_paginate').eq(1).remove()
+
+  $('.dataTables_paginate').eq(0).remove()
   });
   $('#togglePassword').click(function() {
     var passwordInput = $('#inputPassword3');
