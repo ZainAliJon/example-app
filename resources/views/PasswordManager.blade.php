@@ -369,6 +369,7 @@ table.dataTable {
             <th>Email</th>
             <th>User Name</th>
             <th>Password</th>
+            <th>Note</th>
             <th>Pin</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -382,6 +383,7 @@ table.dataTable {
             <td>{{$site->email}}</td>
             <td>{{$site->user_name}}</td>
             <td>{{$site->password}}</td>
+            <td>{{$site->note}}</td>
             <td>
               <div class="">{{$site->pin}}</div>
             </td>
