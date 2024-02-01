@@ -383,7 +383,7 @@ table.dataTable {
             <td>{{$site->email}}</td>
             <td>{{$site->user_name}}</td>
             <td>{{$site->password}}</td>
-            <td>{{$site->note}}</td>
+            <td>{{$site->notes}}</td>
             <td>
               <div class="">{{$site->pin}}</div>
             </td>
@@ -484,7 +484,9 @@ table.dataTable {
 </div>
 </div>
 
+
 @foreach($sites as $site)
+
 <div class="row">
   <div class="modal fade" id="site-edit-modal{{$site->id}}" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">
