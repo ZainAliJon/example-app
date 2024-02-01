@@ -162,17 +162,7 @@ public function site_create(Request $request){
 }
 public function site_edit(Request $request, $id)
 {
-    $validator = Validator::make($request->all(), [
-
-        'password' => [
-            'required',
-            'string',
-        ],
-    ]);
-
-    if($validator->fails()) {
-     return "Password error: Must be in uppercase, lowercase, number, and symbol";
- }
+   
  $data = $request->except('_token');
  $site = PasswordManager::find($id);
 
