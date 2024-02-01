@@ -542,7 +542,7 @@ table.dataTable {
               <div class="form-group row">
                 <label for="inputNote" class="col-sm-2 col-form-label">Note</label>
                 <div class="col-sm-10">
-                  <textarea class="form-control" id="inputNote" placeholder="Notes" value="{{$site->notes}}" name="notes"></textarea>
+                  <textarea class="form-control" id="inputNote" placeholder="Notes" name="notes">{{$site->notes}}</textarea>
                 </div>
               </div>
             </div>
