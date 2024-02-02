@@ -344,6 +344,14 @@ table.dataTable {
 .body {
   background: #f7f7f7;
 }
+table {
+        border-collapse: collapse !important;
+        table-layout: fixed !important;
+        width: 100% !important;
+      }
+      table td {
+        word-wrap: break-word !important;
+      }
 </style>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
@@ -361,18 +369,17 @@ table.dataTable {
       </div>
       
 
-      <table id="example1" class="table table-hover table-responsive nowrap border-0" style="width:100%">
+      <table id="example1" class="table table-hover table-responsive nowrap border-0" style="width:100%;border-collapse: collapse !important;
+        table-layout: fixed !important;
+        width: 100% !important;">
         <thead>
           <tr>
             <th>Name</th>
             <th>Site Address</th>
-            <th>Email</th>
-            <th>User Name</th>
-            <th>Password</th>
+            <th colspan="">Credentials</th>
             <th>Note</th>
             <th>Pin</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -380,23 +387,23 @@ table.dataTable {
           <tr>
             <td class="font-weight-bold">{{$site->name}}</td>
             <td>{{$site->site_name}}</td>
-            <td>{{$site->email}}</td>
-            <td>{{$site->user_name}}</td>
-            <td>{{$site->password}}</td>
-            <td>{{$site->notes}}</td>
+            <td colspan="">
+              <strong>Email : </strong>{{$site->email}} <br>
+              <strong>Username : </strong>{{$site->user_name}} <br>
+              <strong>Password : </strong>{{$site->password}}
+            </td>
+            <td><p style="text-wrap:wrap">{{$site->notes}}</p></td>
             <td>
               <div class="">{{$site->pin}}</div>
             </td>
             <td>
-              <div class=""><a data-target="#site-edit-modal{{$site->id}}" data-toggle="modal" class="btn btn-sm btn-primary text-white" style="padding: 3px 8px;">
-                <i class="fas fa-user"></i> Edit
-              </a></div>
-            </td>
-            <td>
               <div class="">
-               <a href="{{url('/site/delete',['id'=>$site->id])}}" class="btn btn-danger text-white" style="padding: 3px 8px;">delete</a>
-             </div>
-           </td>
+                <a data-target="#site-edit-modal{{$site->id}}" data-toggle="modal" class="btn btn-sm btn-primary text-white" style="padding: 3px 8px;">
+                <i class="fas fa-user"></i> Edit
+                </a>
+                <a href="{{url('/site/delete',['id'=>$site->id])}}" class="btn btn-danger text-white" style="padding: 3px 8px;">delete</a>
+              </div>
+            </td>
          </tr>
          @endforeach
 
@@ -571,9 +578,9 @@ table.dataTable {
   $('#example1').DataTable( {
     dom: 'Bfrtip',
     buttons: [
-      'copy', 'csv', 'excel', 'pdf', 'print'
+      'copy', 'csv', 'excel', 'pdf',
       ],
-       paging: false
+      paging: false
   } );
 $(document).ready(function(){
    var table = $('#example1').DataTable({
