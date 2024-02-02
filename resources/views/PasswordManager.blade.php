@@ -369,7 +369,7 @@ table {
       </div>
       
 
-      <table id="example1" class="table table-hover table-responsive nowrap border-0" style="width:100%;border-collapse: collapse !important;
+      <table id="example1" class="table table-hover display responsive nowrap border-0" style="width:100%;border-collapse: collapse !important;
         table-layout: fixed !important;
         width: 100% !important;">
         <thead>
@@ -385,18 +385,18 @@ table {
         <tbody>
           @foreach($sites as $index => $site)
           <tr>
-            <td class="font-weight-bold">{{$site->name}}</td>
-            <td>{{$site->site_name}}</td>
-            <td colspan="">
-              <strong>Email : </strong>{{$site->email}} <br>
-              <strong>Username : </strong>{{$site->user_name}} <br>
-              <strong>Password : </strong>{{$site->password}}
+            <td class="font-weight-bold" style="text-wrap:wrap;word-wrap: break-word;width: 10%;">{{$site->name}}</td>
+            <td style="width:20%;"><p style="text-wrap:wrap;word-wrap: break-word;">{{$site->site_name}}</p></td>
+            <td colspan="" style="text-wrap:wrap;word-wrap: break-word;width:30%;">
+              <strong style="text-wrap:wrap;word-wrap: break-word;">Email : </strong>{{$site->email}} <br>
+              <strong style="text-wrap:wrap;word-wrap: break-word;">Username : </strong>{{$site->user_name}} <br>
+              <strong style="text-wrap:wrap;word-wrap: break-word;">Password : </strong>{{$site->password}}
             </td>
-            <td><p style="text-wrap:wrap">{{$site->notes}}</p></td>
-            <td>
-              <div class="">{{$site->pin}}</div>
+            <td style="width: 30%;"><p style="text-wrap:wrap;word-wrap: break-word;">{{$site->notes}}</p></td>
+            <td style="width: 10%">
+              <div class="" style="text-wrap:wrap;word-wrap: break-word;">{{$site->pin}}</div>
             </td>
-            <td>
+            <td style="text-wrap:wrap;word-wrap: break-word;width: 10%;">
               <div class="">
                 <a data-target="#site-edit-modal{{$site->id}}" data-toggle="modal" class="btn btn-sm btn-primary text-white" style="padding: 3px 8px;">
                 <i class="fas fa-user"></i> Edit
@@ -406,8 +406,6 @@ table {
             </td>
          </tr>
          @endforeach
-
-
        </tbody>
      </table>
 

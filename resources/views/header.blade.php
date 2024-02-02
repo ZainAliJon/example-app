@@ -74,6 +74,6 @@ body{
   * sidebar-mini
 -->
 <body class="sidebar-mini" style="height: auto;">
-<div class="wrapper container border shadow">
+<div class="wrapper container-fluid border shadow">
 @include('nav')
 {{-- @include('aside') --}}
