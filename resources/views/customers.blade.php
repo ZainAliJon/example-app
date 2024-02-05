@@ -512,7 +512,7 @@ background: #F4F6F9;
   $('#example1').DataTable( {
     dom: 'Bfrtip',
     buttons: [
-      'copy', 'csv', 'excel', 'pdf', 'print'
+      'copy', 'csv', 'excel'
       ]
   } );
 $(document).ready(function(){

@@ -576,7 +576,7 @@ table {
   $('#example1').DataTable( {
     dom: 'Bfrtip',
     buttons: [
-      'copy', 'csv', 'excel', 'pdf',
+      'copy', 'csv', 'excel'
       ],
       paging: false
   } );
