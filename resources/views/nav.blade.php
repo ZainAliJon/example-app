@@ -15,11 +15,8 @@
   <!-- Left navbar links -->
   <ul class="navbar-nav d-flex" style="align-items: baseline;">
     @if(auth()->check())
-    <li class="nav-item d-sm-inline-block border bg-dark">
-      <form class="mb-0" action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button  type="submit" class="nav-link text-white" style="margin-bottom: 0px;border: none;background: none;">Logout</button>
-      </form>
+    <li class="nav-item">
+      <img width="100px" src="{{url('/public/PasswordLog.png')}}">
     </li>
     @endif
     
@@ -63,6 +60,12 @@
       <a class="nav-link" data-widget="fullscreen" href="#" role="button">
         <i class="fas fa-expand-arrows-alt"></i>
       </a>
+    </li>
+    <li class="nav-item d-sm-inline-block border bg-dark">
+      <form class="mb-0" action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button  type="submit" class="nav-link text-white" style="margin-bottom: 0px;border: none;background: none;">Logout</button>
+      </form>
     </li>
     {{-- <li class="nav-item">
       <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
