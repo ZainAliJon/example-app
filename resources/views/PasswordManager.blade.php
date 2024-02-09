@@ -331,11 +331,11 @@ table.dataTable {
   color: #467fcf;
 }
 .form-control:focus {
-    color: #495057;
-    background-color: #fff;
-    border-color: #ced4da;
-    outline: 0;
-    box-shadow: inset 0 0 0 transparent;
+  color: #495057;
+  background-color: #fff;
+  border-color: #ced4da;
+  outline: 0;
+  box-shadow: inset 0 0 0 transparent;
 }
 .avatar-pink {
   background-color: #fcd3e1;
@@ -345,13 +345,13 @@ table.dataTable {
   background: #f7f7f7;
 }
 table {
-        border-collapse: collapse !important;
-        table-layout: fixed !important;
-        width: 100% !important;
-      }
-      table td {
-        word-wrap: break-word !important;
-      }
+  border-collapse: collapse !important;
+  table-layout: fixed !important;
+  width: 100% !important;
+}
+table td {
+  word-wrap: break-word !important;
+}
 </style>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
@@ -361,7 +361,7 @@ table {
       <div class="card">
         <div class="p-2 d-flex align-items-center justify-content-between">
           <div>
-          <h3 class="card-title"></h3>
+            <h3 class="card-title"></h3>
           </div>
           <button data-target="#user-modal" data-toggle="modal" type="button" class="btn btn-outline-primary "><i class="fas fa-users"></i> Add Record</button>
         </div>
@@ -370,46 +370,46 @@ table {
       
 
       <table id="example1" class="table table-hover display responsive nowrap border-0" style="width:100%;border-collapse: collapse !important;
-        table-layout: fixed !important;
-        width: 100% !important;">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Site Address</th>
-            <th colspan="">Credentials</th>
-            <th>Note</th>
-            <th>Pin</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach($sites as $index => $site)
-          <tr>
-            <td class="font-weight-bold" style="text-wrap:wrap;word-wrap: break-word;width: 10%;">{{$site->name}}</td>
-            <td style="width:20%;"><p style="text-wrap:wrap;word-wrap: break-word;">{{$site->site_name}}</p></td>
-            <td colspan="" style="text-wrap:wrap;word-wrap: break-word;width:30%;">
-              <strong style="text-wrap:wrap;word-wrap: break-word;">Email : </strong>{{$site->email}} <br>
-              <strong style="text-wrap:wrap;word-wrap: break-word;">Username : </strong>{{$site->user_name}} <br>
-              <strong style="text-wrap:wrap;word-wrap: break-word;">Password : </strong>{{$site->password}}
-            </td>
-            <td style="width: 30%;"><p style="text-wrap:wrap;word-wrap: break-word;">{{$site->notes}}</p></td>
-            <td style="width: 10%">
-              <div class="" style="text-wrap:wrap;word-wrap: break-word;">{{$site->pin}}</div>
-            </td>
-            <td style="text-wrap:wrap;word-wrap: break-word;width: 10%;">
-              <div class="">
-                <a data-target="#site-edit-modal{{$site->id}}" data-toggle="modal" class="btn btn-sm btn-primary text-white" style="padding: 3px 8px;">
+      table-layout: fixed !important;
+      width: 100% !important;">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Site Address</th>
+          <th colspan="">Credentials</th>
+          <th>Note</th>
+          <th>Pin</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach($sites as $index => $site)
+        <tr>
+          <td class="font-weight-bold" style="text-wrap:wrap;word-wrap: break-word;width: 10%;">{{$site->name}}</td>
+          <td style="width:20%;"><p style="text-wrap:wrap;word-wrap: break-word;">{{$site->site_name}}</p></td>
+          <td colspan="" style="text-wrap:wrap;word-wrap: break-word;width:30%;">
+            <strong style="text-wrap:wrap;word-wrap: break-word;">Email : </strong>{{$site->email}} <br>
+            <strong style="text-wrap:wrap;word-wrap: break-word;">Username : </strong>{{$site->user_name}} <br>
+            <strong style="text-wrap:wrap;word-wrap: break-word;">Password : </strong>{{$site->password}}
+          </td>
+          <td style="width: 30%;"><p style="text-wrap:wrap;word-wrap: break-word;">{{$site->notes}}</p></td>
+          <td style="width: 10%">
+            <div class="" style="text-wrap:wrap;word-wrap: break-word;">{{$site->pin}}</div>
+          </td>
+          <td style="text-wrap:wrap;word-wrap: break-word;width: 10%;">
+            <div class="">
+              <a data-target="#site-edit-modal{{$site->id}}" data-toggle="modal" class="btn btn-sm btn-primary text-white" style="padding: 3px 8px;">
                 <i class="fas fa-user"></i> Edit
-                </a>
-                <a href="{{url('/site/delete',['id'=>$site->id])}}" class="btn btn-danger text-white" style="padding: 3px 8px;">delete</a>
-              </div>
-            </td>
-         </tr>
-         @endforeach
-       </tbody>
-     </table>
+              </a>
+              <a href="{{url('/site/delete',['id'=>$site->id])}}" class="btn btn-danger text-white" style="padding: 3px 8px;">delete</a>
+            </div>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
 
-     <div class="modal fade" id="user-modal" style="display: none;" aria-hidden="true">
+    <div class="modal fade" id="user-modal" style="display: none;" aria-hidden="true">
       <div class="modal-dialog">
         <!-- onsubmit="return validateForm()" -->
         <form class="form-horizontal"  method="post" action="{{url('/site/create')}}" enctype="multipart/form-data" id="PasswordForm">
@@ -458,8 +458,8 @@ table {
                       </button>
                     </div>
                     @if($errors->has('password'))
-                      <div class="text-danger">{{ $errors->first('password') }}</div>
-                      @endif
+                    <div class="text-danger">{{ $errors->first('password') }}</div>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group row">
@@ -528,16 +528,23 @@ table {
                   <input type="text" class="form-control" id="inputEmail3" value="{{$site->user_name}}" placeholder="Name" name="user_name" value="">
                 </div>
               </div>
-              <div class="form-group row">
-                <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control inputPassword33"  placeholder="" value="{{$site->password}}" name="password">
-                  <div class="text-danger ErrorDivEdit" style="display: none;">Password error: Must be in uppercase, lowercase, number, and symbol</div>
-                  @if($errors->has('password'))
-                  <div class="text-danger">{{ $errors->first('password') }}</div>
-                  @endif
+
+                              <div class="form-group row">
+                  <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                  <div class="col-sm-10 " >
+                    <div class="d-flex custom-form-control" style="border: 1px solid #ced4da;border-radius: .25rem">
+                      <input type="password" class="form-control inputPassword33" style="border: none" id="" value="{{$site->password}}" placeholder="" name="password">
+                      <div class="text-danger ErrorDivEdit" style="display: none;">Password error: Must be in uppercase, lowercase, number, and symbol</div>
+
+                      <button type="button"  class="btn btn-link togglePasswordEdit">
+                        <i class="far fa-eye"></i>
+                      </button>
+                    </div>
+                    @if($errors->has('password'))
+                    <div class="text-danger">{{ $errors->first('password') }}</div>
+                    @endif
+                  </div>
                 </div>
-              </div>
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Pin</label>
                 <div class="col-sm-10">
@@ -563,7 +570,7 @@ table {
 </div>
 
 @endforeach
- 
+
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
@@ -578,22 +585,22 @@ table {
     buttons: [
       'copy', 'csv', 'excel'
       ],
-      paging: false
+    paging: false
   } );
-$(document).ready(function(){
+  $(document).ready(function(){
    var table = $('#example1').DataTable({
-      dom: 'Alfrtip',
-      alphabetSearch: {
-         column: 0
-      },
-       paging: false
-    });
-});
+    dom: 'Alfrtip',
+    alphabetSearch: {
+     column: 0
+   },
+   paging: false
+ });
+ });
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
 
-  $('.dataTables_paginate').eq(0).remove()
+    $('.dataTables_paginate').eq(0).remove()
   });
   $('#togglePassword').click(function() {
     var passwordInput = $('#inputPassword3');
@@ -605,6 +612,18 @@ $(document).ready(function(){
     } else {
       passwordInput.attr('type', 'password');
       $('#togglePassword i').removeClass('far fa-eye-slash').addClass('far fa-eye');
+    }
+  });
+    $('.togglePasswordEdit').click(function() {
+    var passwordInput = $('.inputPassword33');
+    var passwordFieldType = passwordInput.attr('type');
+
+    if (passwordFieldType === 'password') {
+      passwordInput.attr('type', 'text');
+      $('.togglePasswordEdit i').removeClass('far fa-eye').addClass('far fa-eye-slash');
+    } else {
+      passwordInput.attr('type', 'password');
+      $('.togglePasswordEdit i').removeClass('far fa-eye-slash').addClass('far fa-eye');
     }
   });
 </script>
