@@ -115,15 +115,15 @@
   .alphabet ul li:nth-child(26) a{
     background: #17c9876b;
   }
-   .alphabet ul li:nth-child(27) a{
+  .alphabet ul li:nth-child(27) a{
     background: #d5c7c2;
   }
-    .alphabet ul li:nth-child(28) a{
+  .alphabet ul li:nth-child(28) a{
     background: #17c9876b;
   }
-.alphabet ul li .empty {
+  .alphabet ul li .empty {
     color: #221f1f !important;
-}
+  }
   .alphabet ul{
     justify-content: start;
     flex-wrap: wrap;
@@ -325,18 +325,18 @@ table.dataTable {
 }
 
 #example1 thead tr th{
-border-bottom:none;
+  border-bottom:none;
 }
 .alphabet-group{
-    visibility: hidden;
-    height: 0px !important;
-    max-height: 0px !important;
+  visibility: hidden;
+  height: 0px !important;
+  max-height: 0px !important;
 } 
 .alphabet-group td{
-background: #F4F6F9;
-    color: #F4F6F9;
-        font-size: 0px;
-    padding: 0px;
+  background: #F4F6F9;
+  color: #F4F6F9;
+  font-size: 0px;
+  padding: 0px;
 }
 .card-header::after{
   display: none;
@@ -372,74 +372,81 @@ background: #F4F6F9;
          <tr>
           <td class="font-weight-bold">{{$user->name}}</td>
           <td>{{$user->email}}</td>
-         <td>{{$user->user_name}}</td>
+          <td>{{$user->user_name}}</td>
           <td>{{$user->created_at->format('d/m/y')}}</td>
           <td class="d-flex">
             <div class="mx-2"><a data-target="#user-edit-modal{{$user->id}}" data-toggle="modal" class="btn btn-sm btn-primary text-white" style="padding: 3px 8px;">
               <i class="fas fa-user"></i> Edit
             </a></div>
             <div class="">
-           <a href="{{url('/user/delete',['id'=>$user->id])}}" class="btn btn-danger text-white" style="padding: 3px 8px;">delete</a>
+             <a href="{{url('/user/delete',['id'=>$user->id])}}" class="btn btn-danger text-white" style="padding: 3px 8px;">delete</a>
+           </div>
+         </td>
+       </tr>
+       @endforeach
+     </tbody>
+   </table>
+
+
+   <div class="modal fade" id="user-modal" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+      <form class="form-horizontal" method="post" action="{{url('/user/create')}}" enctype="multipart/form-data" id="UserPasswordForm">
+        @csrf
+        <div class="modal-content">
+          <div class="modal-body pb-0">
+           <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Add User</h3>
             </div>
-          </td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
-
-
-    <div class="modal fade" id="user-modal" style="display: none;" aria-hidden="true">
-      <div class="modal-dialog">
-        <form class="form-horizontal" method="post" action="{{url('/user/create')}}" enctype="multipart/form-data" id="UserPasswordForm">
-          @csrf
-          <div class="modal-content">
-            <div class="modal-body pb-0">
-             <div class="card card-info">
-              <div class="card-header">
-                <h3 class="card-title">Add User</h3>
+            <div class="card-body">
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                  <input type="hidden" name="user_id" >
+                  <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="name">
+                </div>
               </div>
-              <div class="card-body">
-                <div class="form-group row">
-                  <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
-                  <div class="col-sm-10">
-                    <input type="hidden" name="user_id" >
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="name">
-                  </div>
-                </div>
 
-                <div class="form-group row">
-                  <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                  <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email">
-                  </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email">
                 </div>
-                <div class="form-group row">
-                  <label for="inputEmail3" class="col-sm-2 col-form-label">User Name</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="user_name" value="">
-                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">User Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="user_name" value="">
                 </div>
-                <div class="form-group row">
-                  <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Must be in uppercase, lowercase,number and symbol" name="password" required>
+              </div>
+
+              <div class="form-group row">
+                <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10 " >
+                  <div class="d-flex custom-form-control" style="border: 1px solid #ced4da;border-radius: .25rem">
+                    <input type="password" class="form-control" style="border: none" id="inputPassword3" placeholder="" name="password">
                     <div class="text-danger ErrorDiv" style="display: none;">Password error: Must be in uppercase, lowercase, number, and symbol</div>
-                    @if($errors->has('password'))
-                    <div class="text-danger">{{ $errors->first('password') }}</div>
-                    @endif
+
+                    <button type="button" id="togglePassword" class="btn btn-link">
+                      <i class="far fa-eye"></i>
+                    </button>
                   </div>
+                  @if($errors->has('password'))
+                  <div class="text-danger">{{ $errors->first('password') }}</div>
+                  @endif
                 </div>
               </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="UserSubmitBtn">Save changes</button>
             </div>
           </div>
-        </form>
-      </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="UserSubmitBtn">Save changes</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
+</div>
 </div>
 </div>
 @endif
@@ -475,16 +482,24 @@ background: #F4F6F9;
                   <input type="text" class="form-control" id="inputEmail3" placeholder="Name" name="user_name" value="{{$user->user_name}}">
                 </div>
               </div>
+
               <div class="form-group row">
                 <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control inputPassword4" id="inputPassword3" placeholder="Must be in uppercase, lowercase,number and symbol" name="password">
-                  <div class="text-danger ErrorDivEdit" style="display: none;">Password error: Must be in uppercase, lowercase, number, and symbol</div>
+                <div class="col-sm-10 " >
+                  <div class="d-flex custom-form-control" style="border: 1px solid #ced4da;border-radius: .25rem">
+                    <input type="password" class="form-control inputPassword33" style="border: none" id="" value="{{$user->password}}" placeholder="" name="password">
+                    <div class="text-danger ErrorDivEdit" style="display: none;">Password error: Must be in uppercase, lowercase, number, and symbol</div>
+
+                    <button type="button"  class="btn btn-link togglePasswordEdit">
+                      <i class="far fa-eye"></i>
+                    </button>
+                  </div>
                   @if($errors->has('password'))
                   <div class="text-danger">{{ $errors->first('password') }}</div>
                   @endif
                 </div>
               </div>
+
             </div>
           </div>
           <div class="modal-footer justify-content-between">
@@ -515,14 +530,40 @@ background: #F4F6F9;
       'copy', 'csv', 'excel'
       ]
   } );
-$(document).ready(function(){
+  $(document).ready(function(){
    var table = $('#example1').DataTable({
-      dom: 'Alfrtip',
-      alphabetSearch: {
-         column: 0
-      }      
-   });
-});
+    dom: 'Alfrtip',
+    alphabetSearch: {
+     column: 0
+   }      
+ });
+ });
+</script>
+<script type="text/javascript">
+  $('#togglePassword').click(function() {
+    var passwordInput = $('#inputPassword3');
+    var passwordFieldType = passwordInput.attr('type');
+
+    if (passwordFieldType === 'password') {
+      passwordInput.attr('type', 'text');
+      $('#togglePassword i').removeClass('far fa-eye').addClass('far fa-eye-slash');
+    } else {
+      passwordInput.attr('type', 'password');
+      $('#togglePassword i').removeClass('far fa-eye-slash').addClass('far fa-eye');
+    }
+  });
+  $('.togglePasswordEdit').click(function() {
+    var passwordInput = $('.inputPassword33');
+    var passwordFieldType = passwordInput.attr('type');
+
+    if (passwordFieldType === 'password') {
+      passwordInput.attr('type', 'text');
+      $('.togglePasswordEdit i').removeClass('far fa-eye').addClass('far fa-eye-slash');
+    } else {
+      passwordInput.attr('type', 'password');
+      $('.togglePasswordEdit i').removeClass('far fa-eye-slash').addClass('far fa-eye');
+    }
+  });
 </script>
 @endsection
 
